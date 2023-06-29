@@ -125,3 +125,10 @@ const movementsDescriptions = movements.map(
     )}`
 );
 console.log(movementsDescriptions);
+
+const deposits = movements.filter(mov => mov > 0);
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+
+const withdrawals = movements.filter(mov => mov < 0);
