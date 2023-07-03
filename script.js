@@ -71,7 +71,7 @@ const displayMovements = function (movements) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov}€</div>
       </div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -86,6 +86,27 @@ const calcDisplayBalance = function (movements) {
 };
 
 calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = movements => {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, curr) => acc + curr, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, curr) => acc + curr, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter(int => int >= 1)
+    .reduce((acc, curr) => acc + curr, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+calcDisplaySummary(account1.movements);
 
 const createUsernames = function (accounts) {
   accounts.forEach(function (account) {
@@ -116,14 +137,14 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const eurToUsd = 1.1;
 
 const movementsUSD = movements.map(mov => mov * eurToUsd);
-console.log(movements); // [ 200, 450, -400, 3000, -650, -130, 70, 1300 ]
-console.log(movementsUSD); // [ 220.00000000000003, 495.00000000000006, -440.00000000000006, 3300.0000000000005, -715.0000000000001, -143, 77, 1430.0000000000002 ]
+// console.log(movements); // [ 200, 450, -400, 3000, -650, -130, 70, 1300 ]
+// console.log(movementsUSD); // [ 220.00000000000003, 495.00000000000006, -440.00000000000006, 3300.0000000000005, -715.0000000000001, -143, 77, 1430.0000000000002 ]
 
 const movementsUSDfor = [];
 for (const mov of movements) {
   movementsUSDfor.push(mov * eurToUsd);
 }
-console.log(movementsUSDfor); // [ 220.00000000000003, 495.00000000000006, -440.00000000000006, 3300.0000000000005, -715.0000000000001, -143, 77, 1430.0000000000002 ]
+// console.log(movementsUSDfor); // [ 220.00000000000003, 495.00000000000006, -440.00000000000006, 3300.0000000000005, -715.0000000000001, -143, 77, 1430.0000000000002 ]
 
 const movementsDescriptions = movements.map(
   (mov, i) =>
@@ -131,7 +152,7 @@ const movementsDescriptions = movements.map(
       mov
     )}`
 );
-console.log(movementsDescriptions);
+// console.log(movementsDescriptions);
 
 const deposits = movements.filter(mov => mov > 0);
 
@@ -148,18 +169,29 @@ const withdrawals = movements.filter(mov => mov < 0);
 
 const balance = movements.reduce((acc, curr) => acc + curr, 0);
 
-console.log(balance);
+// console.log(balance);
 
 let balanceFor = 0;
 for (const mov of movements) {
   balanceFor += mov;
 }
 
-console.log(balanceFor);
+// console.log(balanceFor);
 
 //// maximum value
 const max = movements.reduce(
   (acc, curr) => (acc > curr ? acc : curr),
   movements[0]
 );
-console.log(max);
+// console.log(max);
+
+// chaining methods
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map((mov, i, arr) => {
+    // console.log(arr); // We can inspect the current array at any stage of the pipeline using the third parameter of the callback function
+    return mov * eurToUsd;
+  })
+  .reduce((acc, mov) => acc + mov, 0);
+
+// console.log(totalDepositsUSD);
