@@ -195,3 +195,25 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 
 // console.log(totalDepositsUSD);
+
+// FIND METHOD
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+
+// console.log(movements);
+// console.log(firstWithdrawal);
+// the Find method only returns the first siutable element
+
+// console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(account);
+
+let accountForOf;
+for (const account of accounts) {
+  if (account.owner === 'Jessica Davis') {
+    accountForOf = account;
+    break;
+  }
+}
+// console.log(accountForOf);
