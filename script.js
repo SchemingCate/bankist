@@ -178,6 +178,22 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+// the bank grants a loan only if there is at least one deposit with at least 10% of the requested loan amount
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // add movement
+    currentAccount.movements.push(amount);
+
+    // update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   if (
@@ -294,3 +310,24 @@ for (const account of accounts) {
   }
 }
 // console.log(accountForOf);
+
+// --------- some and every
+
+console.log(movements);
+// equality
+console.log(movements.includes(-130));
+
+// some : condition
+console.log(movements.some(mov => mov === -130));
+
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+
+// every
+console.log(movements.every(mov => mov > 0));
+
+// seperate callback
+const isDeposit = mov => mov > 0;
+console.log(movements.some(isDeposit));
+console.log(movements.every(isDeposit));
+console.log(movements.filter(isDeposit));
