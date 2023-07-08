@@ -313,43 +313,43 @@ for (const account of accounts) {
 
 // --------- some and every
 
-console.log(movements);
+// console.log(movements);
 // equality
-console.log(movements.includes(-130));
+// console.log(movements.includes(-130));
 
 // some : condition
-console.log(movements.some(mov => mov === -130));
+// console.log(movements.some(mov => mov === -130));
 
 const anyDeposits = movements.some(mov => mov > 0);
-console.log(anyDeposits);
+// console.log(anyDeposits);
 
 // every
-console.log(movements.every(mov => mov > 0));
+// console.log(movements.every(mov => mov > 0));
 
 // seperate callback
 const isDeposit = mov => mov > 0;
-console.log(movements.some(isDeposit));
-console.log(movements.every(isDeposit));
-console.log(movements.filter(isDeposit));
+// console.log(movements.some(isDeposit));
+// console.log(movements.every(isDeposit));
+// console.log(movements.filter(isDeposit));
 
 // --------- flat and flatMap ES2019
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
-console.log(arr.flat()); // [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+// console.log(arr.flat()); // [ 1, 2, 3, 4, 5, 6, 7, 8 ]
 
 const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
-console.log(arrDeep.flat()); //  [ [1, 2], 3, 4, [5, 6], 7, 8 ]
+// console.log(arrDeep.flat()); //  [ [1, 2], 3, 4, [5, 6], 7, 8 ]
 // parameter = 1 - deep level:
-console.log(arrDeep.flat(2)); // [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+// console.log(arrDeep.flat(2)); // [ 1, 2, 3, 4, 5, 6, 7, 8 ]
 
 //
 const overallBalance = accounts
   .map(acc => acc.movements)
   .flat()
   .reduce((acc, mov) => acc + mov, 0);
-console.log(overallBalance);
+// console.log(overallBalance);
 
 // flatMap - compines a map and a flat methods, better for performance
 const overallBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
-console.log(overallBalance2);
+// console.log(overallBalance2);
