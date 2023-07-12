@@ -452,3 +452,13 @@ labelBalance.addEventListener('click', function () {
   console.log(movementsUI);
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 });
+
+// The Remainder Operator
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    // 0, 2, 4, 6 ...
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    // 0, 3, 6, 9 ...
+    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+  });
+});
