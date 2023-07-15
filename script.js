@@ -414,8 +414,8 @@ const array = [1, 2, 3, 4, 5, 6, 7];
 // Empty arrays + fill method
 const x = new Array(7);
 // if we pass only one argument, it creates a new empty array with that length
-console.log(x); // [ <7 empty slots> ]
-console.log(x.map(() => 5)); // [ <7 empty slots> ] // NOTHING HAPPEND
+// console.log(x); // [ <7 empty slots> ]
+// console.log(x.map(() => 5)); // [ <7 empty slots> ] // NOTHING HAPPEND
 // one method that we can call on this empty array is fill method
 
 // x.fill(1); // MUTATES the array
@@ -426,30 +426,30 @@ console.log(x.map(() => 5)); // [ <7 empty slots> ] // NOTHING HAPPEND
 // console.log(x); // [ <3 empty slots>, 1, 1, 1, 1 ]
 
 x.fill(1, 3, 5);
-console.log(x); // [ <3 empty slots>, 1, 1, <2 empty slots> ]
+// console.log(x); // [ <3 empty slots>, 1, 1, <2 empty slots> ]
 
 array.fill(23, 4, 6);
-console.log(array); // [ 1, 2, 3, 4, 23, 23, 7 ]
+// console.log(array); // [ 1, 2, 3, 4, 23, 23, 7 ]
 
 // Array.from()
 const y = Array.from({ length: 7 }, () => 1);
-console.log(y); // [ 1, 1, 1, 1, 1, 1, 1 ]
+// console.log(y); // [ 1, 1, 1, 1, 1, 1, 1 ]
 
 const z = Array.from({ length: 7 }, (_, i) => i + 1);
-console.log(z); // [ 1, 2, 3, 4, 5, 6, 7 ]
+// console.log(z); // [ 1, 2, 3, 4, 5, 6, 7 ]
 
 // 100 random dice rolls
 const diceRolls = Array.from({ length: 100 }, (_, __, arr) =>
   Math.floor(Math.random() * (8 - 1) + 1)
 );
-console.log(diceRolls);
+// console.log(diceRolls);
 
 labelBalance.addEventListener('click', function () {
   const movementsUI = Array.from(
     document.querySelectorAll('.movements__value'),
     el => +el.textContent.replace('€', '')
   );
-  console.log(movementsUI);
+  // console.log(movementsUI);
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 });
 
